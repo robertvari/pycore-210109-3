@@ -1,6 +1,26 @@
-class Player:
-    pass
+import random
+from faker import Faker
 
+
+class Player:
+    def __init__(self):
+        self.name = None
+        self.wallet = random.randint(100, 1000)
+        self.hand = []
+        self.in_game = True
+
+        self._fake = Faker()
+
+    def create(self, name=None):
+        if name:
+            self.name = name
+        else:
+            self.name = self._fake.name()
+
+        return self
+
+    def __repr__(self):
+        return self.name
 
 class Deck:
     def __init__(self):
@@ -35,7 +55,10 @@ class Deck:
 
                 self.cards.append(Card(card_name, value))
 
-        print(self.cards)
+        random.shuffle(self.cards)
+
+    def __str__(self):
+        return str(self.cards)
 
 
 class Card:
@@ -52,8 +75,18 @@ class Card:
         return self._value
 
     def __repr__(self):
-        return f"Name: {self.name} Value:{self.value}"
+        return f"{self.name} {self.value}"
 
 
 if __name__ == '__main__':
-    dect = Deck()
+    deck = Deck()
+
+    player1 = Player().create("Robert Vari")
+    player2 = Player().create()
+    player3 = Player().create()
+    player4 = Player().create()
+
+    print(player1)
+    print(player2)
+    print(player3)
+    print(player4)
