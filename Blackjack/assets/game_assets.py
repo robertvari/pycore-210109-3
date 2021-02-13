@@ -3,7 +3,39 @@ class Player:
 
 
 class Deck:
-    pass
+    def __init__(self):
+        self.cards = []
+        self.create()
+
+    def create(self):
+        self.cards.clear()
+
+        cards = [
+            ["2", 2],
+            ["3", 3],
+            ["4", 4],
+            ["5", 5],
+            ["6", 6],
+            ["7", 7],
+            ["8", 8],
+            ["9", 9],
+            ["10", 10],
+            ["King", 10],
+            ["Queen", 10],
+            ["Jack", 10],
+            ["Ace", 11]
+        ]
+
+        names = ["Heart", "Club", "Diamond", "Spade"]
+
+        for name in names:
+            for card in cards:
+                card_name = f"{name} {card[0]}"
+                value = card[1]
+
+                self.cards.append(Card(card_name, value))
+
+        print(self.cards)
 
 
 class Card:
@@ -19,10 +51,9 @@ class Card:
     def value(self):
         return self._value
 
-    def __str__(self):
-        return f"{self.name} {self.value}"
+    def __repr__(self):
+        return f"Name: {self.name} Value:{self.value}"
 
 
 if __name__ == '__main__':
-    card = Card("Spade", 8)
-    print(card)
+    dect = Deck()
