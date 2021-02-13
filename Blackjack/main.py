@@ -4,13 +4,24 @@ from assets.game_assets import Deck, Player
 class Blackjack:
     def __init__(self):
         self._intro()
-        self._players = []
-        self._current_level = 0
+        self._players = [
+            Player().create(),
+            Player().create(),
+            Player().create(),
+        ]
 
         self.deck = Deck()
         self.current_bet = 0
 
-        self.player = Player()
+        self.player = None
+
+        self._create_player()
+
+    def _create_player(self):
+        name = input("What is your name?")
+        self.player = Player().create(name)
+        print(f"Welcome in the game. You have {self.player.wallet}")
+        print(f"You are playing with {self._players}")
 
     @staticmethod
     def _intro():
