@@ -27,6 +27,13 @@ class Player:
             print(f"{self.name} passes...")
         else:
             new_card = deck.give_card()
+            if "Ace" in new_card.name and hand_value > 10:
+                new_card.value = 1
+
+            self.hand.append(new_card)
+
+    def report(self):
+        print(f"{self.name} hand value: {self._count_hand()}")
 
     def _count_hand(self):
         return sum([card.value for card in self.hand])
@@ -92,6 +99,10 @@ class Card:
     def value(self):
         return self._value
 
+    @value.setter
+    def value(self, value):
+        self._value = value
+
     def __repr__(self):
         return f"{self.name} {self.value}"
 
@@ -100,4 +111,18 @@ if __name__ == '__main__':
     deck = Deck()
 
     player1 = Player().create()
-    player1.get_card(deck)
+    player2 = Player().create()
+    player3 = Player().create()
+    player4 = Player().create()
+
+    players = [player1, player2, player3, player4]
+
+    for p in players:
+        print(f"{p} is playing...")
+        while p.in_game:
+            p.get_card(deck)
+
+    player1.report()
+    player2.report()
+    player3.report()
+    player4.report()
