@@ -1,9 +1,12 @@
 from assets.characters import Player
+from assets.places import Arena, Tavern
 
 
 class BattleOfClasses:
     def __init__(self):
-        self.player = Player()
+        self.player = Player(name="Robert", race="human")
+        self.arena = Arena()
+        self.tavern = Tavern()
 
         self.intro()
 
@@ -22,9 +25,10 @@ class BattleOfClasses:
             exit()
 
         elif player_input == "1":
-            pass
+            self.arena.enter(self.player)
+
         elif player_input == "2":
-            pass
+            self.tavern.enter(self.player)
 
 
 if __name__ == '__main__':

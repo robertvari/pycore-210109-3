@@ -15,7 +15,7 @@ class Arena(BasePlace):
     def __init__(self):
         super().__init__()
         self.place_name = "Arena"
-        self.enemy = Enemy()
+        self._enemy = Enemy()
 
     def enter(self, player):
         super().enter(player)
@@ -25,4 +25,4 @@ class Tavern(BasePlace):
     def __init__(self):
         super().__init__()
         self.place_name = "Tavern"
-        self.bartender = NPC()
+        self._bartender = NPC()
