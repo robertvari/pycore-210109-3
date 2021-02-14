@@ -33,7 +33,7 @@ class Player:
         else:
             new_card = deck.give_card()
 
-            print(f"{self.name} got {new_card}")
+            # print(f"{self.name} got {new_card}")
 
             if "Ace" in new_card.name and hand_value > 10:
                 new_card.value = 1
@@ -48,6 +48,27 @@ class Player:
 
     def __repr__(self):
         return self.name
+
+
+class RealPlayer(Player):
+    def get_card(self, deck):
+        while self.in_game:
+            print(f"Cards in your hand: {self.hand}")
+
+            hand_value = self._count_hand()
+            print(f"Hand value: {hand_value}")
+
+            player_input = input("Dou you want to draw a card?(y/n)")
+
+            if player_input == "y":
+                new_card = deck.give_card()
+
+                if "Ace" in new_card.name and hand_value > 10:
+                    new_card.value = 1
+
+                self.hand.append(new_card)
+            else:
+                self.in_game = False
 
 
 class Deck:
@@ -118,19 +139,6 @@ class Card:
 if __name__ == '__main__':
     deck = Deck()
 
-    player1 = Player().create()
-    player2 = Player().create()
-    player3 = Player().create()
-    player4 = Player().create()
-
-    players = [player1, player2, player3, player4]
-
-    for p in players:
-        print(f"{p} is playing...")
-        while p.in_game:
-            p.get_card(deck)
-
-    player1.report()
-    player2.report()
-    player3.report()
-    player4.report()
+    my_player = RealPlayer().create("Robert Vari")
+    my_player.get_card(deck)
+    my_player.report()

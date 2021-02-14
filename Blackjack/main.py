@@ -35,7 +35,11 @@ class Blackjack:
             while player.in_game:
                 player.get_card(self.deck)
 
-            player.report()
+        print(f"\nNow this is your turn {self.player}")
+        self.current_bet += self.player.give_bet(10)
+
+        # while self.player.in_game:
+        #     self.player.get_card(self.deck)
 
     @staticmethod
     def _intro():
