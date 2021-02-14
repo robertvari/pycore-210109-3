@@ -1,4 +1,6 @@
 import random
+from faker import Faker
+faker = Faker()
 
 
 class BaseCharacter:
@@ -43,27 +45,37 @@ class BaseCharacter:
         print("-" * 50)
 
 
-class Player(BaseCharacter):
+class NPC(BaseCharacter):
     def __init__(self):
         super().__init__()
 
-        self.name = input("What is your name?")
-        self.race = input(f"What is your race? {self.RACES.keys()}")
-
-        if self.race in self.RACES:
-            self.init_states()
+        self.name = faker.name()
+        self.race = random.choice([i for i in self.RACES])
+        self.init_states()
 
 
-class Enemy(BaseCharacter):
-    pass
+class Player(BaseCharacter):
+    def __init__(self, name=None, race=None):
+        super().__init__()
+
+        if not name:
+            name = input("What is your name?")
+        self.name = name
+
+        if not race:
+            race = input(f"What is your race? {self.RACES.keys()}")
+        self.race = race
+
+        self.init_states()
 
 
-class NPC(BaseCharacter):
+class Enemy(NPC):
     pass
 
 
 if __name__ == '__main__':
-    player = Player()
+    player = Player(name="Robert", race="human")
     player.report()
 
     enemy = Enemy()
+    enemy.report()
