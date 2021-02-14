@@ -30,13 +30,28 @@ class BaseCharacter:
         self.defense = self.RACES[self.race]["defense"]
         self.strength = self.RACES[self.race]["strength"]
 
+    def report(self):
+        print("-"*50)
+        print(f"Name: {self.name}")
+        print(f"Race: {self.race}")
+        print(f"Inventory: {self.inventory}")
+        print(f"Golds: {self.golds}")
+        print(f"Health: {self.health}")
+        print(f"Strength: {self.strength}")
+        print(f"Defense: {self.defense}")
+        print(f"XP: {self.xp}")
+        print("-" * 50)
+
 
 class Player(BaseCharacter):
     def __init__(self):
         super().__init__()
 
         self.name = input("What is your name?")
-        self.race = input(f"What is your race? {self.RACES}")
+        self.race = input(f"What is your race? {self.RACES.keys()}")
+
+        if self.race in self.RACES:
+            self.init_states()
 
 
 class Enemy(BaseCharacter):
@@ -48,4 +63,7 @@ class NPC(BaseCharacter):
 
 
 if __name__ == '__main__':
+    player = Player()
+    player.report()
+
     enemy = Enemy()
