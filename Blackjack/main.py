@@ -17,11 +17,25 @@ class Blackjack:
 
         self._create_player()
 
+        self.game()
+
     def _create_player(self):
-        name = input("What is your name?")
+        name = "Robert Vari"
         self.player = Player().create(name)
         print(f"Welcome in the game. You have {self.player.wallet}")
         print(f"You are playing with {self._players}")
+
+    def game(self):
+
+        for player in self._players:
+            print(f"{player} is in game.")
+
+            self.current_bet += player.give_bet(10)
+
+            while player.in_game:
+                player.get_card(self.deck)
+
+            player.report()
 
     @staticmethod
     def _intro():

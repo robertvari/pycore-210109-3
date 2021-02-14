@@ -19,6 +19,11 @@ class Player:
 
         return self
 
+    def give_bet(self, value):
+        self.wallet -= value
+
+        return value
+
     def get_card(self, deck):
         hand_value = self._count_hand()
 
@@ -27,6 +32,9 @@ class Player:
             print(f"{self.name} passes...")
         else:
             new_card = deck.give_card()
+
+            print(f"{self.name} got {new_card}")
+
             if "Ace" in new_card.name and hand_value > 10:
                 new_card.value = 1
 
