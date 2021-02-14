@@ -80,6 +80,9 @@ class Player(BaseCharacter):
 
         self.init_states()
 
+    def buy(self):
+        pass
+
 
 class Enemy(NPC):
     pass
