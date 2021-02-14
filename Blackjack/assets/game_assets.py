@@ -41,6 +41,7 @@ class Player:
 
     def drop_hand(self):
         self.hand.clear()
+        self.in_game = True
 
     def get_start_hand(self, deck):
         for _ in range(2):
