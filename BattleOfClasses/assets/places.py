@@ -19,6 +19,17 @@ class Arena(BasePlace):
 
     def enter(self, player):
         super().enter(player)
+        print(f"{self._enemy} attacks you as soon as you enter...")
+
+        while True:
+            self._enemy.attack(self.player)
+
+            if self.player.health <= 0:
+                break
+
+            self.player.attack(self._enemy)
+            if self._enemy.health <= 0:
+                break
 
 
 class Tavern(BasePlace):
