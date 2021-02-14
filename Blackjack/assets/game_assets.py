@@ -50,6 +50,10 @@ class Player:
     def _count_hand(self):
         return sum([card.value for card in self.hand])
 
+    @property
+    def hand_value(self):
+        return self._count_hand()
+
     def __repr__(self):
         return self.name
 

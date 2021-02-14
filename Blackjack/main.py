@@ -45,6 +45,11 @@ class Blackjack:
         for i in self._players:
             i.report()
 
+        player_list = self._players
+        player_list.append(self.player)
+        player_list = [i for i in player_list if i.hand_value <= 21]
+
+        print(player_list)
 
     @staticmethod
     def _intro():
