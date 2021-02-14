@@ -44,6 +44,15 @@ class BaseCharacter:
         print(f"XP: {self.xp}")
         print("-" * 50)
 
+    def attack(self, target):
+        attack_strength = random.randint(0, self.strength)
+
+        if attack_strength == 0:
+            print(f"{self.name} misses {target}")
+        else:
+            target.health -= attack_strength
+            print(f"{self.name} hits {target} with {attack_strength} strength.")
+
     def __repr__(self):
         return self.name
 

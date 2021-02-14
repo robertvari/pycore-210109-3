@@ -21,15 +21,24 @@ class Arena(BasePlace):
         super().enter(player)
         print(f"{self._enemy} attacks you as soon as you enter...")
 
+        self.fight()
+
+    def fight(self):
+        winner = None
+
         while True:
             self._enemy.attack(self.player)
 
             if self.player.health <= 0:
+                winner = self._enemy
                 break
 
             self.player.attack(self._enemy)
             if self._enemy.health <= 0:
+                winner = self.player
                 break
+
+        print(f"The winner is {winner}")
 
 
 class Tavern(BasePlace):
