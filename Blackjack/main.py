@@ -1,4 +1,4 @@
-from assets.game_assets import Deck, Player
+from assets.game_assets import Deck, Player, RealPlayer
 
 
 class Blackjack:
@@ -21,7 +21,7 @@ class Blackjack:
 
     def _create_player(self):
         name = "Robert Vari"
-        self.player = Player().create(name)
+        self.player = RealPlayer().create(name)
         print(f"Welcome in the game. You have {self.player.wallet}")
         print(f"You are playing with {self._players}")
 
@@ -37,9 +37,14 @@ class Blackjack:
 
         print(f"\nNow this is your turn {self.player}")
         self.current_bet += self.player.give_bet(10)
+        self.player.get_card(self.deck)
 
-        # while self.player.in_game:
-        #     self.player.get_card(self.deck)
+        print("-"*50)
+        self.player.report()
+
+        for i in self._players:
+            i.report()
+
 
     @staticmethod
     def _intro():

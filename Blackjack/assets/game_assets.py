@@ -62,6 +62,7 @@ class RealPlayer(Player):
 
             if player_input == "y":
                 new_card = deck.give_card()
+                print(f"new card is: {new_card}")
 
                 if "Ace" in new_card.name and hand_value > 10:
                     new_card.value = 1
