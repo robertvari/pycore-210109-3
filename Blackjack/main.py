@@ -22,10 +22,10 @@ class Blackjack:
     def _create_player(self):
         name = "Robert Vari"
         self.player = RealPlayer().create(name)
-        print(f"Welcome in the game. You have {self.player.wallet}")
         print(f"You are playing with {self._players}")
 
     def game(self):
+        print(f"Welcome in the game. You have {self.player.wallet} credits.")
 
         for player in self._players:
             print(f"{player} is in game.")
@@ -47,8 +47,18 @@ class Blackjack:
 
         self.get_winner()
 
+        is_continue = input("Do you want to continue?(y/n)")
+
+        if is_continue == "y":
+            self.deck.create()
+            self.player.drop_hand()
+            [i.drop_hand() for i in self._players]
+            self.game()
+        else:
+            print("Maybe next time!")
+
     def get_winner(self):
-        player_list = self._players
+        player_list = [i for i in self._players]
         player_list.append(self.player)
         player_list = [i for i in player_list if i.hand_value <= 21]
 
@@ -59,7 +69,6 @@ class Blackjack:
             winner.wallet += self.current_bet
         else:
             print("Nobody wins.")
-
 
     @staticmethod
     def _intro():

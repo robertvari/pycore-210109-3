@@ -39,6 +39,9 @@ class Player:
 
                 self.hand.append(new_card)
 
+    def drop_hand(self):
+        self.hand.clear()
+
     def get_start_hand(self, deck):
         for _ in range(2):
             new_card = deck.give_card()
