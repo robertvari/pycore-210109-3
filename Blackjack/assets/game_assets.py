@@ -25,20 +25,19 @@ class Player:
         return value
 
     def get_card(self, deck):
-        hand_value = self._count_hand()
+        while self.in_game:
+            hand_value = self._count_hand()
 
-        if hand_value > 16:
-            self.in_game = False
-            print(f"{self.name} passes...")
-        else:
-            new_card = deck.give_card()
+            if hand_value > 16:
+                self.in_game = False
+                print(f"{self.name} passes...")
+            else:
+                new_card = deck.give_card()
 
-            # print(f"{self.name} got {new_card}")
+                if "Ace" in new_card.name and hand_value > 10:
+                    new_card.value = 1
 
-            if "Ace" in new_card.name and hand_value > 10:
-                new_card.value = 1
-
-            self.hand.append(new_card)
+                self.hand.append(new_card)
 
     def report(self):
         print(f"{self.name} hand value: {self._count_hand()}")
