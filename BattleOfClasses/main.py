@@ -1,3 +1,10 @@
+from assets.characters import Player
+
+
 class BattleOfClasses:
     def __init__(self):
-        pass
+        self.player = Player()
+
+
+if __name__ == '__main__':
+    BattleOfClasses()
