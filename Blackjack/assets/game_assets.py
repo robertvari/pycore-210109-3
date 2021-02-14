@@ -39,6 +39,11 @@ class Player:
 
                 self.hand.append(new_card)
 
+    def get_start_hand(self, deck):
+        for _ in range(2):
+            new_card = deck.give_card()
+            self.hand.append(new_card)
+
     def report(self):
         print(f"{self.name} hand value: {self._count_hand()}")
 
@@ -56,6 +61,11 @@ class RealPlayer(Player):
 
             hand_value = self._count_hand()
             print(f"Hand value: {hand_value}")
+
+            if hand_value > 21:
+                self.in_game = False
+                print(f"Your hand value is to much: {hand_value} :((")
+                break
 
             player_input = input("Dou you want to draw a card?(y/n)")
 
@@ -140,5 +150,5 @@ if __name__ == '__main__':
     deck = Deck()
 
     my_player = RealPlayer().create("Robert Vari")
+    my_player.get_start_hand(deck)
     my_player.get_card(deck)
-    my_player.report()
