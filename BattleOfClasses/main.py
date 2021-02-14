@@ -5,8 +5,8 @@ from assets.places import Arena, Tavern
 class BattleOfClasses:
     def __init__(self):
         self.player = Player(name="Robert", race="human")
-        self.arena = Arena()
-        self.tavern = Tavern()
+        self.arena = Arena(self)
+        self.tavern = Tavern(self)
 
         self.intro()
 

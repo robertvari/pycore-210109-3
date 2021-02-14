@@ -2,7 +2,8 @@ from assets.characters import Enemy, NPC
 
 
 class BasePlace:
-    def __init__(self):
+    def __init__(self, game):
+        self._game = game
         self.place_name = None
         self.player = None
 
@@ -12,8 +13,8 @@ class BasePlace:
 
 
 class Arena(BasePlace):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, game):
+        super().__init__(game)
         self.place_name = "Arena"
         self._enemy = Enemy()
 
@@ -39,10 +40,11 @@ class Arena(BasePlace):
                 break
 
         print(f"The winner is {winner}")
+        self._game.menu()
 
 
 class Tavern(BasePlace):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, game):
+        super().__init__(game)
         self.place_name = "Tavern"
         self._bartender = NPC()
